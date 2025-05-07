@@ -9,6 +9,12 @@ const cardWrapper = css`
   height: 220px;
   margin: 1.5rem;
   perspective: 800px;
+
+  @media (max-width: 600px) {
+    width: 90vw;
+    height: 90vw;
+    margin: 1rem auto;
+  }
 `;
 
 const cardHoverEffect = css`
@@ -45,6 +51,12 @@ const frontFace = (color) => css`
   overflow: hidden;
   transition: transform 0.3s ease;
 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+
   &:hover {
     transform: rotateX(-2deg);
   }
@@ -64,24 +76,23 @@ const frontFace = (color) => css`
   }
 
   &::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 150px;
-  height: 150px;
-  background: radial-gradient(
-    circle at 100% 100%,
-    rgba(0, 0, 0, 0.25),
-    transparent 70%
-  );
-  clip-path: path("M150 0 Q150 150 0 150 L150 150 Z");
-  z-index: 2;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-}
-
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(
+      circle at 100% 100%,
+      rgba(0, 0, 0, 0.25),
+      transparent 70%
+    );
+    clip-path: path("M150 0 Q150 150 0 150 L150 150 Z");
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
 
   &:hover::before,
   &:hover::after {
@@ -100,6 +111,7 @@ const overlay = css`
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 1rem;
 `;
 
 const popupBack = css`
@@ -121,6 +133,18 @@ const popupBack = css`
   overflow-y: auto;
   z-index: 1000;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    padding: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.9rem;
+    padding: 0.75rem;
+  }
 `;
 
 const closeBtn = css`

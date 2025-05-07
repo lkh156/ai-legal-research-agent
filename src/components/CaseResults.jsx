@@ -9,7 +9,6 @@ const layout = css`
   justify-content: center;
   gap: 2rem;
   padding: 2rem;
-  overflow: hidden;
 `;
 
 const emptyMessage = css`
