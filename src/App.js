@@ -6,16 +6,17 @@ import ApiKeyPrompt from './components/ApiKeyPrompt';
 import FileUploader from './components/FileUploader';
 import FactsForm from './components/FactsForm';
 import CaseResults from './components/CaseResults';
+import parseIRACTextToCases from './utils/parseIRAC';
 
 export default function App() {
-  const [apiKey, setApiKey]     = useState(null);
-  const [rawText, setRawText]   = useState('');
-  const [results, setResults]   = useState('');
+  const [apiKey, setApiKey] = useState(null);
+  const [rawText, setRawText] = useState('');
+  const [results, setResults] = useState([]);
 
   return (
     <div
       css={css`
-        max-width: 600px;
+        max-width: 1000px;
         margin: 2rem auto;
         padding: 0 1rem;
         font-family: sans-serif;
@@ -26,6 +27,7 @@ export default function App() {
           font-size: 1.75rem;
           font-weight: bold;
           margin-bottom: 1rem;
+          text-align: center;
         `}
       >
         AI Legal Research Agent
@@ -39,9 +41,13 @@ export default function App() {
           <FactsForm
             apiKey={apiKey}
             initialFacts={rawText}
-            onResults={setResults}
+            onResults={(text) => {
+              const parsed = parseIRACTextToCases(text);
+              console.log("✅ Parsed Case Results:", parsed);
+              setResults(parsed);
+            }}
           />
-          <CaseResults resultText={results} />
+          <CaseResults results={results} />
         </>
       )}
     </div>

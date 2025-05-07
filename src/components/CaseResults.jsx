@@ -1,35 +1,34 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react';
-import { css } from '@emotion/react';
+import React from "react";
+import { css } from "@emotion/react";
+import CaseCard from "./CaseCard";
 
-const containerStyle = css `
-    margin-top: 1.5rem;
-    padding: 1rem;
-    background: #f9fafb
-    border: 1px solid #e5e7eb;
-    border-radius: 6px;
+const layout = css`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+  overflow: hidden;
 `;
 
-const headingStyle = css `
-    font-size: 1.25rem;
-    font-weight: bold;
-    margin-bottom: 0.75rem;
+const emptyMessage = css`
+  font-family: sans-serif;
+  color: #333;
+  text-align: center;
+  margin-top: 3rem;
 `;
 
-const preStyle = css `
-    white-space: pre-wrap;
-    font-family: monospace;
-    line-height: 1.4;
-`;
+export default function CaseResults({ results }) {
+  const cases = Array.isArray(results) ? results.filter(Boolean) : [];
 
-export default function CaseResults({ resultText }) {
-    if (!resultText) return null;
-
-    return (
-        <div css={containerStyle}>
-            <div css={headingStyle}>
-                <pre css={preStyle}>{resultText}</pre>
-            </div>
-        </div>
-    );
+  return (
+    <div css={layout}>
+      {cases.length > 0 ? (
+        cases.map((c, i) => <CaseCard key={i} caseData={c} index={i} />)
+      ) : (
+        <p css={emptyMessage}>No case results to display.</p>
+      )}
+    </div>
+  );
 }
