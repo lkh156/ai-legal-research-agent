@@ -1,70 +1,146 @@
-# Getting Started with Create React App
+# AI Legal Research Agent
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 📘 Overview
 
-## Available Scripts
+The **AI Legal Research Agent** is a browser-based AI assistant that helps legal professionals and students rapidly identify, retrieve, and understand the most relevant case law for any fact pattern. Upload a legal brief or complaint and receive concise, accurate case summaries powered by OpenAI's GPT models.
 
-In the project directory, you can run:
+This project serves as both a technical showcase and product management portfolio piece.
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🚀 Vision & Purpose
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Vision**: Accelerate and simplify legal research using AI-driven case retrieval.
+- **Purpose**: Showcase AI integration and best-in-class product management in a portfolio-ready format.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🎯 Objectives & Success Metrics
 
-### `npm run build`
+| Objective                          | Metric                                           |
+|-----------------------------------|--------------------------------------------------|
+| Research Time Reduction           | ≥ 50% faster than traditional manual research    |
+| User Satisfaction                 | ≥ 4.5/5 average usability survey rating          |
+| Case Relevance Accuracy           | ≥ 90% expert-reviewed cases judged on-point      |
+| Adoption                          | ≥ 100 unique users in first month post-release   |
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 👤 Target Users & Personas
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Junior Associate**: Needs fast, reliable case citations under deadline.
+- **Law Student**: Learning to identify and summarize precedent.
+- **Solo Practitioner**: Seeking affordable, efficient legal research tools.
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🧩 Key User Stories
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **US1**: Upload a legal brief (PDF, DOCX, or TXT) and auto-extract facts.
+- **US2**: Paste and securely manage your OpenAI API key (client-side only).
+- **US3**: View top 5 relevant cases with citations and summaries.
+- **US4**: Adjust how many results are returned (k).
+- **US5**: Download output as PDF or Markdown.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## ✅ MVP Scope
 
-## Learn More
+- Static React front end hosted on GitHub Pages
+- Client-side file parsing via `pdfjs-dist`
+- Client-side OpenAI integration via pasted API key
+- No backend server or user database
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## ❌ Out of Scope for v1
 
-### Code Splitting
+- No backend proxy or storage
+- No user authentication
+- No complex filtering beyond prompt tuning
+- No batch processing or multi-document support
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+## 🛠️ Tech Stack
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- **Frontend**: React (Vite or CRA), Tailwind CSS
+- **PDF Parsing**: `pdfjs-dist`
+- **AI**: OpenAI GPT-4o or GPT-4o-mini
+- **Hosting**: GitHub Pages
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 🧪 Architecture
 
-### Advanced Configuration
+```text
+[Browser] --(upload)--> [pdfjs] --> rawText --> [React App]
+                                    ↓
+                             [User API Key in State]
+                                    ↓
+                            --(fetch)--> OpenAI API
+                                    ↓
+                     JSON Response → React Components
+                                    ↓
+                    Render Case Summaries in UI
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+ai-legal-research-agent/
+├── public/
+│   ├── index.html
+│   └── favicon.ico
+├── src/
+│   ├── components/
+│   │   ├── ApiKeyPrompt.jsx
+│   │   ├── FileUploader.jsx
+│   │   ├── FactsForm.jsx
+│   │   └── CaseResults.jsx
+│   ├── App.jsx
+│   └── index.jsx
+├── package.json
+├── .gitignore
+└── README.md
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+🧭 Roadmap
+Milestone	                                  Status
+Project Kickoff & PRD Approval	               ✅
+File Upload & Text Extraction	               ✅
+OpenAI Prompt Integration	                   ✅
+UI/UX Controls & Styling	                   ✅
+Deployment & Testing	                       ✅
+Demo & Feedback Collection	                   ✅
 
-### `npm run build` fails to minify
+📦 How to Use
+⚙️ Prerequisites
+OpenAI account with API key (GPT-4o or GPT-4o-mini access)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Modern browser (Chrome, Firefox, Edge)
+
+🛠️ Setup Instructions (Local)
+Clone the repo
+
+git clone https://github.com/your-username/ai-legal-research-agent.git
+cd ai-legal-research-agent
+
+Install dependencies
+
+npm install
+
+Run the app
+
+npm run dev
+
+Using the App
+
+
+
+(1) Paste your OpenAI API key when prompted (key is not stored).
+
+(2) Upload a legal document (PDF, TXT, DOCX).
+
+(3) Wait for the top 5 cases to populate with short IRAC summaries.
+
+
+
+Author
+Loran Hendricks
